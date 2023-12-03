@@ -1,0 +1,107 @@
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #f5f6f7;
+}
+
+.form__search {
+  position: relative;
+}
+
+.form__search-input {
+  width: 608px;
+  height: 45px;
+  border-radius: 50px;
+  border: 1px solid #2f71e5;
+  outline: none;
+  color: #000;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  padding-left: 10px;
+}
+
+.form__search-btn {
+  color: #fff;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  border-radius: 50px;
+  border: 1px solid #2f71e5;
+  background-color: #2f71e5;
+  width: 125px;
+  height: 45px;
+  position: absolute;
+  transition: opacity 0.2s linear;
+  right: 1px;
+  top: 2px;
+  cursor: pointer;
+}
+
+.form__search-btn:hover {
+  opacity: 0.8;
+}
+
+.cards {
+  padding: 10px 10px 10px 10px;
+}
+
+.card__header {
+  color: #000;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin: 40px 0 40px 34px;
+}
+
+.card__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 17px;
+  margin-top: 34px;
+  list-style: none;
+}
+
+.card {
+  cursor: pointer;
+  background-color: #fff;
+  width: 285px;
+  height: 390px;
+  border: 2px solid #000;
+  border-radius: 10px;
+  box-shadow: 4px 4px 5px rgba(0, 132, 255, 0.4);
+}
+
+.card__image {
+  width: 285px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.card__name {
+  text-align: center;
+  background-color: #fff;
+  border-radius: 4px;
+  color: rgba(0, 0, 0, 0.9);
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
+  margin: 16px 0 0 0;
+  padding: 2px 12px;
+}
+
+.card__type {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  margin: 25px 0 16px 15px;
+}
