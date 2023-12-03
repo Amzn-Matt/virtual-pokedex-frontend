@@ -1,0 +1,28 @@
+.about {
+  padding: 100px 80px;
+  background-color: #fff;
+  color: #1f1f1f;
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.about__title {
+  max-width: 154px;
+  margin: 0;
+  font-size: 20px;
+  line-height: 30px;
+  font-weight: 500;
+}
+
+.about__content {
+  font-size: 20px;
+  line-height: 30px;
+  font-weight: 400;
+  max-width: 660px;
+  margin: auto 120px;
+}
+
+.about__paragraph {
+  margin: 0 0 32px;
+}
