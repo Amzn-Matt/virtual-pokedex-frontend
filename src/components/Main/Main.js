@@ -2,7 +2,8 @@ import "./Main.css";
 import ItemCard from "../ItemCard/ItemCard";
 import About from "../About/About";
 
-const Main = () => {
+const Main = ({ pokemonItems }) => {
+  console.log(pokemonItems);
   return (
     <main className="main">
       <form className="form__search">
