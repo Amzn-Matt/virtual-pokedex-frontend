@@ -2,8 +2,14 @@ import "./Main.css";
 import ItemCard from "../ItemCard/ItemCard";
 import About from "../About/About";
 
-const Main = ({ pokemonData, onShowMore, onChange, onSubmit }) => {
-  console.log(pokemonData);
+const Main = ({
+  pokemonData,
+  onShowMore,
+  onChange,
+  onSubmit,
+  onSelectCard,
+}) => {
+  // console.log(pokemonData);
 
   return (
     <main className="main">
@@ -19,7 +25,9 @@ const Main = ({ pokemonData, onShowMore, onChange, onSubmit }) => {
 
         <ul className="card__list">
           {pokemonData.map((pokemon, i) => {
-            return <ItemCard key={i} pokemon={pokemon} />;
+            return (
+              <ItemCard key={i} pokemon={pokemon} onSelectCard={onSelectCard} />
+            );
           })}
         </ul>
         <button className="card__list-btn" type="button" onClick={onShowMore}>
