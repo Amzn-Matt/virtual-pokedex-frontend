@@ -2,13 +2,14 @@ import "./Main.css";
 import ItemCard from "../ItemCard/ItemCard";
 import About from "../About/About";
 
-const Main = ({ pokemonItems }) => {
-  console.log(pokemonItems);
+const Main = ({ pokemonData, onShowMore, onChange, onSubmit }) => {
+  console.log(pokemonData);
+
   return (
     <main className="main">
       <form className="form__search">
-        <input className="form__search-input"></input>
-        <button className="form__search-btn" type="submit">
+        <input className="form__search-input" onChange={onChange}></input>
+        <button className="form__search-btn" type="submit" onSubmit={onSubmit}>
           Search
         </button>
       </form>
@@ -17,13 +18,13 @@ const Main = ({ pokemonItems }) => {
         <div className="card__header">Pokemon</div>
 
         <ul className="card__list">
-          <ItemCard />
-          <ItemCard />
-          <ItemCard />
-          <ItemCard />
-          <ItemCard />
-          <ItemCard />
+          {pokemonData.map((pokemon, i) => {
+            return <ItemCard key={i} pokemon={pokemon} />;
+          })}
         </ul>
+        <button className="card__list-btn" type="button" onClick={onShowMore}>
+          Show More
+        </button>
       </section>
       <About />
     </main>

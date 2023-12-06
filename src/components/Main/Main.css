@@ -48,6 +48,8 @@
 
 .cards {
   padding: 10px 10px 10px 10px;
+  display: flex;
+  flex-direction: column;
 }
 
 .card__header {
@@ -88,6 +90,7 @@
 .card__name {
   text-align: center;
   background-color: #fff;
+  text-transform: capitalize;
   border-radius: 4px;
   color: rgba(0, 0, 0, 0.9);
   font-family: "Cabinet Grotesk", sans-serif;
@@ -99,9 +102,37 @@
   padding: 2px 12px;
 }
 
+.card__type-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
 .card__type {
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
   margin: 25px 0 16px 15px;
+  display: flex;
+  flex-direction: row;
+}
+
+.card__list-btn {
+  margin: 15px auto 0;
+  color: #fff;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  border-radius: 50px;
+  border: 1px solid #2f71e5;
+  background-color: #2f71e5;
+  width: 125px;
+  height: 45px;
+  cursor: pointer;
+  transition: opacity 0.2s linear;
+}
+
+.card__list-btn:hover {
+  opacity: 0.6;
 }
