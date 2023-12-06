@@ -1,9 +1,19 @@
-export const getAllPokemon = () => {
-  const pokeApi = fetch("https://pokeapi.co/api/v2/pokemon/").then((res) => {
-    if (res.ok) {
-      return res.json();
-    }
-    return Promise.reject(`Error: ${res.status}`);
+export async function getAllPokemon(url) {
+  return new Promise((resolve, reject) => {
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        resolve(data);
+      });
   });
-  return pokeApi;
-};
+}
+
+export async function getPokemon(url) {
+  return new Promise((resolve, reject) => {
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        resolve(data);
+      });
+  });
+}
