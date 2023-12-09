@@ -1,25 +1,29 @@
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { TYPE_COLOR } from "../../utils/Constants";
 
-const ItemCard = ({ pokemon, onSelectCard }) => {
-  const handleCardClick = () => {
-    onSelectCard(pokemon);
-  };
-
-  let myLink = "";
-
-  const { "official-artwork": link } = pokemon?.sprites.other;
-  myLink = link.front_shiny;
-
+const ItemCard = ({ pokemon }) => {
+  console.log(pokemon);
   return (
     <Link to={`pokemon/${pokemon.name}`}>
-      <li className="card" onClick={handleCardClick}>
-        <img src={myLink} alt={pokemon.name} className="card__image" />
+      <li
+        className="card"
+        style={{
+          backgroundColor: `${TYPE_COLOR[pokemon.types[0].type.name]}`,
+        }}
+      >
+        <div className="card__image-container">
+          <img
+            src={pokemon?.sprites.other["official-artwork"].front_default}
+            alt={pokemon.name}
+            className="card__image"
+          />
+        </div>
         <p className="card__name">{pokemon.name}</p>
-        <div className="card__type-wrapper">
-          {pokemon.types.map((type, i) => {
+        <div className="card__move-wrapper">
+          {pokemon.moves.slice(0, 3).map((move, i) => {
             return (
-              <p className="card__type" key={i}>
-                {type.type.name}
+              <p className="card__move" key={i}>
+                {move.move.name}
               </p>
             );
           })}
