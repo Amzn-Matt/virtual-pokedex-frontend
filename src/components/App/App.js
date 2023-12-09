@@ -11,14 +11,15 @@ import { Route, Switch } from "react-router-dom";
 function App() {
   const [pokemonData, setPokemonData] = useState([]);
   const [nextUrl, setNextUrl] = useState("");
-  const [selectedCard, setSelectedCard] = useState({});
-  const [search, setSearch] = useState("");
+  const [prevUrl, setPrevUrl] = useState("");
+  // const [selectedCard, setSelectedCard] = useState({});
   const baseUrl = "https://pokeapi.co/api/v2/pokemon";
 
   const fetchData = async () => {
     const response = await getAllPokemon(baseUrl);
-    console.log(response);
+    // console.log(response);
     setNextUrl(response.next);
+    setPrevUrl(response.previous);
     loadingPokemon(response.results);
   };
 
@@ -32,21 +33,26 @@ function App() {
     setPokemonData(pokemon);
   };
 
-  const handleShowMore = async () => {
-    const showMore = await getAllPokemon(nextUrl);
-    await loadingPokemon(showMore.results);
-    setNextUrl(showMore.next);
+  const handleNextPage = async () => {
+    const data = await getAllPokemon(nextUrl);
+    await loadingPokemon(data.results);
+    setNextUrl(data.next);
+    setPrevUrl(data.previous);
   };
 
-  const handleSelectedCard = async () => {
-    const res = await getAllPokemon(baseUrl);
-    await loadingPokemon(res.results);
-    setSelectedCard(res.results);
+  const handlePreviousPage = async () => {
+    if (!prevUrl) return;
+    const data = await getAllPokemon(prevUrl);
+    await loadingPokemon(data.results);
+    setNextUrl(data.next);
+    setPrevUrl(data.previous);
   };
 
-  const handleChange = (e) => {
-    setSearch(e.target.value);
-  };
+  // const handleSelectedCard = async () => {
+  //   const res = await getAllPokemon(baseUrl);
+  //   await loadingPokemon(res.results);
+  //   setSelectedCard(res.results);
+  // };
 
   useEffect(() => {
     fetchData();
@@ -59,16 +65,17 @@ function App() {
         <Route exact path="/">
           <Main
             pokemonData={pokemonData}
-            onShowMore={handleShowMore}
-            onChange={handleChange}
-            onSelectCard={handleSelectedCard}
+            onNextPage={handleNextPage}
+            onPreviousPage={handlePreviousPage}
+            prevUrl={prevUrl}
+            nextUrl={nextUrl}
           />
         </Route>
         <Route path="/profile">
           <Profile pokemonData={pokemonData} />
         </Route>
-        <Route path="/pokemon/">
-          <PokemonPage selectedCard={selectedCard} />
+        <Route path="/pokemon/:id">
+          <PokemonPage />
         </Route>
       </Switch>
       <Footer />
