@@ -72,24 +72,45 @@
 }
 
 .card {
+  position: relative;
   cursor: pointer;
-  background-color: #fff;
   width: 285px;
   height: 390px;
   border: 2px solid #000;
   border-radius: 10px;
   box-shadow: 4px 4px 5px rgba(0, 132, 255, 0.4);
+  padding: 10px 10px 10px 10px;
+  transition: transform 0.2s ease-in-out;
+}
+.card:hover {
+  transform: translate(0, -10px);
+}
+
+.card__image-container {
+  display: flex;
+  justify-content: center;
+  height: 200px;
+  width: 285px;
+  margin-top: 20px;
 }
 
 .card__image {
-  width: 285px;
-  object-fit: cover;
+  width: 265px;
+  background: linear-gradient(
+    135deg,
+    rgba(242, 246, 248, 1) 0%,
+    rgba(216, 225, 231, 1) 50%,
+    rgba(181, 198, 208, 1) 51%,
+    rgba(224, 239, 249, 1) 100%
+  );
+  object-fit: contain;
   border-radius: 10px;
+  padding: 10px 0;
 }
 
 .card__name {
+  position: absolute;
   text-align: center;
-  background-color: #fff;
   text-transform: capitalize;
   border-radius: 4px;
   color: rgba(0, 0, 0, 0.9);
@@ -98,27 +119,34 @@
   font-style: normal;
   font-weight: 700;
   line-height: 20px;
-  margin: 16px 0 0 0;
   padding: 2px 12px;
+  top: -13px;
 }
 
-.card__type-wrapper {
+.card__move-wrapper {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
-.card__type {
+.card__move {
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
-  margin: 25px 0 16px 15px;
+  color: #000;
   display: flex;
   flex-direction: row;
 }
 
+.card__button-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+}
+
 .card__list-btn {
-  margin: 15px auto 0;
+  margin: 15px 0;
   color: #fff;
   font-family: "Cabinet Grotesk", sans-serif;
   font-size: 14px;
