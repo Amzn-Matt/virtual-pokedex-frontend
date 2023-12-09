@@ -1,38 +1,36 @@
 import "./Main.css";
 import ItemCard from "../ItemCard/ItemCard";
 import About from "../About/About";
-
-const Main = ({
-  pokemonData,
-  onShowMore,
-  onChange,
-  onSubmit,
-  onSelectCard,
-}) => {
-  // console.log(pokemonData);
-
+const Main = ({ pokemonData, onNextPage, onPreviousPage, prevUrl, nexUrl }) => {
   return (
     <main className="main">
-      <form className="form__search">
-        <input className="form__search-input" onChange={onChange}></input>
-        <button className="form__search-btn" type="submit" onSubmit={onSubmit}>
-          Search
-        </button>
-      </form>
-
+      <input className="form__search-input"></input>
       <section className="cards">
-        <div className="card__header">Pokemon</div>
-
         <ul className="card__list">
           {pokemonData.map((pokemon, i) => {
-            return (
-              <ItemCard key={i} pokemon={pokemon} onSelectCard={onSelectCard} />
-            );
+            return <ItemCard key={i} pokemon={pokemon} />;
           })}
         </ul>
-        <button className="card__list-btn" type="button" onClick={onShowMore}>
-          Show More
-        </button>
+        <div className="card__button-wrapper">
+          {prevUrl && (
+            <button
+              className="card__list-btn"
+              type="button"
+              onClick={onPreviousPage}
+            >
+              Previous Page
+            </button>
+          )}
+          {!nexUrl && (
+            <button
+              className="card__list-btn"
+              type="button"
+              onClick={onNextPage}
+            >
+              Next Page
+            </button>
+          )}
+        </div>
       </section>
       <About />
     </main>
