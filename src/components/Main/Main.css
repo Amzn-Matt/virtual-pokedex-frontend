@@ -98,10 +98,10 @@
   width: 265px;
   background: linear-gradient(
     135deg,
-    rgba(242, 246, 248, 1) 0%,
-    rgba(216, 225, 231, 1) 50%,
-    rgba(181, 198, 208, 1) 51%,
-    rgba(224, 239, 249, 1) 100%
+    rgba(246, 248, 249, 1) 0%,
+    rgba(229, 235, 238, 1) 50%,
+    rgba(215, 222, 227, 1) 51%,
+    rgba(245, 247, 249, 1) 100%
   );
   object-fit: contain;
   border-radius: 10px;
