@@ -9,21 +9,31 @@ const PokemonPage = () => {
   const params = useParams();
   const [pokemonId, setPokemonId] = useState({});
   const [pokemonDetails, setPokemonDetails] = useState({});
+  const [selectedImage, setSelectedImage] = useState("original");
+
+  const IMAGE_URLS = {
+    original: pokemonId?.sprites?.other["official-artwork"].front_default,
+
+    shiny: pokemonId?.sprites?.other["official-artwork"].front_shiny,
+  };
+  const imageVariants = ["original", "shiny"];
 
   let description = "";
-  pokemonDetails.flavor_text_entries?.some((entry) => {
+  pokemonDetails.flavor_text_entries?.some(function (entry) {
     if (entry.language.name === "en") {
       description = entry.flavor_text;
-      return;
+      return description;
     }
+    return description;
   });
 
   let species = "";
-  pokemonDetails.genera?.some((gen) => {
+  pokemonDetails.genera?.some(function (gen) {
     if (gen.language.name === "en") {
       species = gen.genus;
-      return;
+      return species;
     }
+    return species;
   });
 
   const getDetails = async () => {
@@ -46,7 +56,7 @@ const PokemonPage = () => {
     };
     getPokemon();
     getDetails();
-  }, [params.id]);
+  }, []);
 
   return (
     <main className="pokemon__profile">
@@ -71,8 +81,28 @@ const PokemonPage = () => {
       </div>
       <img
         className="pokemon__image"
-        src={pokemonId?.sprites?.other.dream_world.front_default}
+        src={IMAGE_URLS[selectedImage]}
+        alt={pokemonId.name}
       />
+      <div className="pokemon__image-btn-wrapper">
+        {imageVariants.map((image, i) => {
+          return (
+            <button
+              key={i}
+              className="image__button"
+              style={{
+                backgroundColor: `${
+                  selectedImage === image ? "#2f71e5" : "#d3d3d3"
+                }`,
+                color: "white",
+              }}
+              onClick={() => setSelectedImage(image)}
+            >
+              {image}
+            </button>
+          );
+        })}
+      </div>
       <span className="pokemon__genus">{species}</span>
       <span className="pokemon__entry">{description}</span>
       <div className="pokemon__details-container">
