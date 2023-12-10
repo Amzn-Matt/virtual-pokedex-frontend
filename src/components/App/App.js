@@ -36,6 +36,8 @@ function App() {
     setIsLoading(true);
     const response = await getAllPokemon(baseUrl);
     // console.log(response);
+    setPrevUrl(response.previous);
+    setNextUrl(response.next);
     loadingPokemon(response.results)
       .catch(console.error)
       .finally(() => setIsLoading(false));
