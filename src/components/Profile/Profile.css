@@ -3,22 +3,3 @@
   justify-content: space-between;
   padding: 0 40px 0 40px;
 }
-
-.collection-section {
-  display: flex;
-  flex-direction: column;
-}
-
-.collection__wrapper {
-  display: flex;
-  gap: 20px;
-}
-
-.collection__cards {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 17px;
-  margin-top: 34px;
-  list-style: none;
-  padding: 0;
-}
