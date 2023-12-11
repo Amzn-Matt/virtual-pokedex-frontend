@@ -1,6 +1,8 @@
 import "./Main.css";
+import { useState, useEffect } from "react";
 import ItemCard from "../ItemCard/ItemCard";
 import Preloader from "../Preloader/Preloader";
+import { getGlobalPokemon, getPokemon } from "../../utils/PokeApi";
 
 const Main = ({
   pokemonData,
@@ -10,9 +12,41 @@ const Main = ({
   nexUrl,
   isLoading,
 }) => {
+  const [input, setInput] = useState("");
+  const [globalPokemon, setGlobalPokemon] = useState([]);
+
+  const handleInputChange = (e) => {
+    setInput(e.target.value);
+  };
+
+  const baseUrl = "https://pokeapi.co/api/v2/";
+
+  const fetchGlobalPokemon = async () => {
+    const res = await getGlobalPokemon(
+      `${baseUrl}pokemon?limit=10000&offset=0`
+    );
+    const data = await res;
+    // setGlobalPokemon(data.results);
+
+    const promises = data.results.map(async (pokemon) => {
+      const res = await fetch(pokemon.url);
+      const data = await res.json();
+      return data;
+    });
+    const results = await Promise.all(promises);
+    console.log(results);
+  };
+
+  useEffect(() => {
+    fetchGlobalPokemon();
+  }, []);
+
   return (
     <main className="main">
-      <input className="form__search-input"></input>
+      <input
+        className="form__search-input"
+        // onChange={handleInputChange}
+      ></input>
       <section className="cards">
         {isLoading ? (
           <Preloader />
