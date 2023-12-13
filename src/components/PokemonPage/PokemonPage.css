@@ -159,12 +159,6 @@
   }
 }
 
-@media screen and (max-width: 320px) {
-  .pokemon__image {
-    max-width: 305px;
-  }
-}
-
 @media screen and (max-width: 470px) {
   .pokemon__entry {
     font-size: 14px;
@@ -172,5 +166,11 @@
 
   .pokemon__ability {
     font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .pokemon__image {
+    max-width: 305px;
   }
 }
