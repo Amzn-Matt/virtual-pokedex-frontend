@@ -18,8 +18,10 @@ function App() {
   const [prevUrl, setPrevUrl] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [activeModal, setActiveModal] = useState("");
+  const [offset, setoffset] = useState(0);
+  const limit = 20;
 
-  const baseUrl = "https://pokeapi.co/api/v2/pokemon";
+  const baseUrl = `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`;
 
   const handleOpenRegisterModal = () => {
     setActiveModal("register");

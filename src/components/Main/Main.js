@@ -19,12 +19,10 @@ const Main = ({
   //   setInput(e.target.value);
   // };
 
-  // const baseUrl = "https://pokeapi.co/api/v2/";
+  // const baseUrl = "https://pokeapi.co/api/v2/pokemon";
 
   // const fetchGlobalPokemon = async () => {
-  //   const res = await getGlobalPokemon(
-  //     `${baseUrl}pokemon?limit=10000&offset=0`
-  //   );
+  //   const res = await getGlobalPokemon(`${baseUrl}?limit=1000&offset=0`);
   //   const data = await res;
   //   // setGlobalPokemon(data.results);
 
