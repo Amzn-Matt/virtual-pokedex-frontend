@@ -8,6 +8,7 @@
 }
 
 .header__title {
+  font-family: "Pokemon Hollow", sans-serif;
   margin: 0;
   color: #000;
 }
@@ -69,15 +70,46 @@
   opacity: 1;
 }
 
-.navigation__about {
-  color: #000;
-  font-family: "Cabinet Grotesk", sans-serif;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 700;
-  margin-top: 10px;
+.navigation__mobile-btn {
+  background-color: #fff;
+  border: 1px solid #2f71e5;
+  visibility: hidden;
 }
 
-/* a {
-  text-decoration: none;
-} */
+@media screen and (max-width: 640px) {
+  .header {
+    justify-content: space-around;
+    margin: 10px 15px 10px 15px;
+    border-bottom: none;
+  }
+
+  .navigation {
+    max-width: 250px;
+    gap: 0;
+  }
+
+  .navigation__register-btn {
+    visibility: hidden;
+  }
+
+  .navigation__login-btn {
+    visibility: hidden;
+  }
+
+  .navigation__mobile-btn {
+    visibility: visible;
+    cursor: pointer;
+    cursor: pointer;
+    transition: opacity 0.2s linear;
+  }
+
+  .navigation__mobile-btn:hover {
+    opacity: 0.6;
+  }
+}
+
+@media screen and (max-width: 470px) {
+  .header__title {
+    font-size: 20px;
+  }
+}
