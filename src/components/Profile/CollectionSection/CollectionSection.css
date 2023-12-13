@@ -16,3 +16,25 @@
   list-style: none;
   padding: 0;
 }
+
+@media screen and (max-width: 870px) {
+  .collection__title {
+    margin: 20px 0 10px 5px;
+  }
+
+  .collection-section {
+    display: grid;
+  }
+
+  .collection__wrapper {
+    display: grid;
+  }
+
+  .collection__cards {
+    grid-gap: 35px 25px;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+}

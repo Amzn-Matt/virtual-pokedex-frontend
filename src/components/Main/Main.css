@@ -6,10 +6,6 @@
   background-color: #f5f6f7;
 }
 
-.form__search {
-  position: relative;
-}
-
 .form__search-input {
   width: 608px;
   height: 45px;
@@ -163,4 +159,51 @@
 
 .card__list-btn:hover {
   opacity: 0.6;
+}
+
+@media screen and (max-width: 640px) {
+  .main {
+    max-width: 640px;
+  }
+
+  .card__list {
+    padding: 0;
+  }
+
+  .form__search-input {
+    max-width: 400px;
+    max-height: 30px;
+  }
+}
+
+@media screen and (max-width: 438px) {
+  .form__search-input {
+    max-width: 300px;
+    max-height: 30px;
+  }
+
+  .cards {
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 409px) {
+  .card__list {
+    max-width: 250px;
+  }
+}
+
+@media screen and (max-width: 330px) {
+  .form__search-input {
+    max-width: 280px;
+    max-height: 30px;
+  }
+
+  .card {
+    max-width: 265px;
+  }
+
+  .card__image-container {
+    max-width: 265px;
+  }
 }

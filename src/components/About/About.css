@@ -29,3 +29,26 @@
 .about__paragraph {
   margin: 0 0 32px;
 }
+
+@media screen and (max-width: 640px) {
+  .about__content {
+    font-size: 16px;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 570px) {
+  .about__content {
+    margin: 0;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .about {
+    padding-top: 30px;
+  }
+
+  .about__content {
+    font-size: 13px;
+  }
+}
