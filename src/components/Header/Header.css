@@ -73,6 +73,7 @@
 .navigation__mobile-btn {
   background-color: #fff;
   border: 1px solid #2f71e5;
+  border-radius: 5px;
   visibility: hidden;
 }
 
@@ -80,7 +81,7 @@
   .header {
     justify-content: space-around;
     margin: 10px 15px 10px 15px;
-    border-bottom: none;
+    max-width: 100%;
   }
 
   .navigation {
