@@ -12,34 +12,34 @@ const Main = ({
   nexUrl,
   isLoading,
 }) => {
-  const [input, setInput] = useState("");
-  const [globalPokemon, setGlobalPokemon] = useState([]);
+  // const [input, setInput] = useState("");
+  // const [globalPokemon, setGlobalPokemon] = useState([]);
 
-  const handleInputChange = (e) => {
-    setInput(e.target.value);
-  };
+  // const handleInputChange = (e) => {
+  //   setInput(e.target.value);
+  // };
 
-  const baseUrl = "https://pokeapi.co/api/v2/";
+  // const baseUrl = "https://pokeapi.co/api/v2/";
 
-  const fetchGlobalPokemon = async () => {
-    const res = await getGlobalPokemon(
-      `${baseUrl}pokemon?limit=10000&offset=0`
-    );
-    const data = await res;
-    // setGlobalPokemon(data.results);
+  // const fetchGlobalPokemon = async () => {
+  //   const res = await getGlobalPokemon(
+  //     `${baseUrl}pokemon?limit=10000&offset=0`
+  //   );
+  //   const data = await res;
+  //   // setGlobalPokemon(data.results);
 
-    const promises = data.results.map(async (pokemon) => {
-      const res = await fetch(pokemon.url);
-      const data = await res.json();
-      return data;
-    });
-    const results = await Promise.all(promises);
-    console.log(results);
-  };
+  //   const promises = data.results.map(async (pokemon) => {
+  //     const res = await fetch(pokemon.url);
+  //     const data = await res.json();
+  //     return data;
+  //   });
+  //   const results = await Promise.all(promises);
+  //   console.log(results);
+  // };
 
-  useEffect(() => {
-    fetchGlobalPokemon();
-  }, []);
+  // useEffect(() => {
+  //   fetchGlobalPokemon();
+  // }, []);
 
   return (
     <main className="main">

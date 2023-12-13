@@ -7,6 +7,7 @@ import Profile from "../Profile/Profile.js";
 import PokemonPage from "../PokemonPage/PokemonPage.js";
 import RegisterModal from "../RegisterModal/RegisterModal.js";
 import LoginModal from "../LoginModal/LoginModal.js";
+import MobileModal from "../MobileModal/MobileModal.js";
 import { useEffect, useState } from "react";
 import { getAllPokemon, getPokemon } from "../../utils/PokeApi.js";
 import { Route, Switch } from "react-router-dom";
@@ -26,6 +27,10 @@ function App() {
 
   const handleOpenLoginModal = () => {
     setActiveModal("login");
+  };
+
+  const handleOpenMobileModal = () => {
+    setActiveModal("mobile");
   };
 
   const handleCloseModal = () => {
@@ -83,6 +88,7 @@ function App() {
       <Header
         onSignUp={handleOpenRegisterModal}
         onLogin={handleOpenLoginModal}
+        onMobileBtn={handleOpenMobileModal}
       />
       <Switch>
         <Route exact path="/">
@@ -118,6 +124,13 @@ function App() {
           buttonText={isLoading ? "Loging In...." : "Login"}
           altButtonText={"or Register"}
           onAltButton={handleOpenRegisterModal}
+        />
+      )}
+      {activeModal === "mobile" && (
+        <MobileModal
+          onCloseModal={handleCloseModal}
+          onSignUp={handleOpenRegisterModal}
+          onLogin={handleOpenLoginModal}
         />
       )}
       <Footer />
