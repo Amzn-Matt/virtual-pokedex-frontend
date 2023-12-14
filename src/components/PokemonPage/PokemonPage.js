@@ -1,6 +1,7 @@
 import "./PokemonPage.css";
 import { useParams } from "react-router-dom/cjs/react-router-dom";
 import { useEffect, useState } from "react";
+import { getPokemonSpecies, getPokemonStats } from "../../utils/PokeApi";
 import { TYPE_COLOR } from "../../utils/Constants";
 import { TfiRuler } from "react-icons/tfi";
 import { LiaWeightHangingSolid } from "react-icons/lia";
@@ -38,22 +39,28 @@ const PokemonPage = ({ isLoading }) => {
   });
 
   const getDetails = async () => {
-    const data = await fetch(
+    await getPokemonSpecies(
       `https://pokeapi.co/api/v2/pokemon-species/${params.id}`
-    );
-    const details = await data.json();
+    )
+      .then((data) => {
+        const details = data;
 
-    console.log(details);
-    setPokemonDetails(details);
+        console.log(details);
+        setPokemonDetails(details);
+      })
+      .catch(console.error);
   };
 
   useEffect(() => {
     const getPokemon = async () => {
-      const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${params.id}`);
-      const pokemon = await res.json();
-      console.log(pokemon);
+      await getPokemonStats(`https://pokeapi.co/api/v2/pokemon/${params.id}`)
+        .then((res) => {
+          const pokemon = res;
+          console.log(pokemon);
 
-      setPokemonId(pokemon);
+          setPokemonId(pokemon);
+        })
+        .catch(console.error);
     };
     getPokemon();
     getDetails();
