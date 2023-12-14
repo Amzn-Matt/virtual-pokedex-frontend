@@ -2,7 +2,7 @@ import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { TYPE_COLOR } from "../../utils/Constants";
 
 const ItemCard = ({ pokemon }) => {
-  console.log(pokemon);
+  // console.log(pokemon);
   return (
     <Link to={`pokemon/${pokemon.name}`}>
       <li
