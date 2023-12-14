@@ -4,20 +4,20 @@ The Virtual Pokédex is fun app in which users can browse through pokemon cards 
 
 **Technologies**
 
--React
--JavaScript
--API
--Semantic HTML5
--Avanced CSS
--Flexbox
+- React
+- JavaScript
+- API
+- Semantic HTML5
+- Avanced CSS
+- Flexbox
 
 **Project Features**
 
--Functional forms
--React routing
--Fully rendered Pokèmon cards for all Pokèmon
--Dedicated profile page for each selected Pokèmon card
--Functionong Pagination to allow users to browse through all Pokèmon
+- Functional forms
+- React routing
+- Fully rendered Pokèmon cards for all Pokèmon
+- Dedicated profile page for each selected Pokèmon card
+- Functionong Pagination to allow users to browse through all Pokèmon
 
 **Future Project Imporovements**
 
