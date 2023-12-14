@@ -16,7 +16,7 @@
 }
 .pokemon__index {
   color: rgba(0, 0, 0, 0.9);
-  font-family: "Cabinet Grotesk", sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
@@ -27,7 +27,7 @@
 .pokemon__name {
   text-transform: capitalize;
   color: rgba(0, 0, 0, 0.9);
-  font-family: "Cabinet Grotesk", sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 25px;
   font-style: normal;
   font-weight: 700;
@@ -39,7 +39,7 @@
   display: flex;
   text-transform: capitalize;
   color: #fff;
-  font-family: "Cabinet Grotesk", sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 16px;
   font-style: normal;
   text-align: center;
@@ -65,7 +65,7 @@
 
 .image__button {
   color: #000;
-  font-family: "Cabinet Grotesk", sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 14px;
   font-style: normal;
   border-radius: 50px;
@@ -84,6 +84,8 @@
 .pokemon__genus {
   background-color: #37b5aa;
   color: #fff;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
   margin-top: 10px;
   padding-top: 10px;
   width: 100%;
@@ -93,10 +95,12 @@
 
 .pokemon__entry {
   margin-top: 10px;
+  font-family: "Inter", sans-serif;
   font-size: 20px;
 }
 
 .pokemon__details-container {
+  font-family: "Inter", sans-serif;
   margin-top: 25px;
   display: flex;
   gap: 10px;
@@ -120,7 +124,7 @@
 .pokemon__ability {
   color: rgba(0, 0, 0, 0.9);
   font-size: 16px;
-  font-family: "Cabinet Grotesk", sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
@@ -144,7 +148,7 @@
 .pokemon__stat-name {
   color: rgba(0, 0, 0, 0.9);
   font-size: 16px;
-  font-family: "Cabinet Grotesk", sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
@@ -169,8 +173,17 @@
   }
 }
 
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 399px) {
   .pokemon__image {
     max-width: 305px;
+  }
+
+  .pokemon__abilities-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .pokemon__ability {
+    font-size: 16px;
   }
 }

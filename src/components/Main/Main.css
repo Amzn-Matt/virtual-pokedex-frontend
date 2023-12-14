@@ -13,7 +13,7 @@
   border: 1px solid #2f71e5;
   outline: none;
   color: #000;
-  font-family: "Cabinet Grotesk", sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
@@ -22,7 +22,7 @@
 
 .form__search-btn {
   color: #fff;
-  font-family: "Cabinet Grotesk", sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 700;
@@ -50,7 +50,7 @@
 
 .card__header {
   color: #000;
-  font-family: "Cabinet Grotesk", sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
@@ -110,7 +110,7 @@
   text-transform: capitalize;
   border-radius: 4px;
   color: rgba(0, 0, 0, 0.9);
-  font-family: "Cabinet Grotesk", sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
@@ -127,6 +127,7 @@
 }
 
 .card__move {
+  font-family: "Inter", sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
@@ -144,7 +145,7 @@
 .card__list-btn {
   margin: 15px 0;
   color: #fff;
-  font-family: "Cabinet Grotesk", sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 700;

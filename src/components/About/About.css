@@ -11,14 +11,16 @@
 }
 
 .about__title {
+  font-family: "Inter", sans-serif;
   max-width: 154px;
   margin: 0;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 30px;
-  font-weight: 500;
+  font-weight: 900;
 }
 
 .about__content {
+  font-family: "Inter", sans-serif;
   font-size: 20px;
   line-height: 30px;
   font-weight: 400;
