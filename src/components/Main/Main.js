@@ -12,38 +12,51 @@ const Main = ({
   nexUrl,
   isLoading,
 }) => {
-  // const [input, setInput] = useState("");
-  // const [globalPokemon, setGlobalPokemon] = useState([]);
+  const [search, setSearch] = useState("");
+  const [globalPokemon, setGlobalPokemon] = useState([]);
+  const [globalPokemonStats, setGlobalPokemonStats] = useState([]);
 
-  // const handleInputChange = (e) => {
-  //   setInput(e.target.value);
-  // };
+  const handleSearch = (e) => {
+    const text = e.toLowerCase();
+    setSearch(text);
+  };
 
-  // const baseUrl = "https://pokeapi.co/api/v2/pokemon";
+  const baseUrl = "https://pokeapi.co/api/v2/pokemon";
 
-  // const fetchGlobalPokemon = async () => {
-  //   const res = await getGlobalPokemon(`${baseUrl}?limit=1000&offset=0`);
-  //   const data = await res;
-  //   // setGlobalPokemon(data.results);
+  const fetchGlobalPokemon = async () => {
+    const res = await getGlobalPokemon(`${baseUrl}?limit=1000&offset=0`);
+    const data = await res;
+    setGlobalPokemon(data.results);
+    console.log(globalPokemon);
 
-  //   const promises = data.results.map(async (pokemon) => {
-  //     const res = await fetch(pokemon.url);
-  //     const data = await res.json();
-  //     return data;
-  //   });
-  //   const results = await Promise.all(promises);
-  //   console.log(results);
-  // };
+    const allPokemon = await Promise.all(
+      globalPokemon.map(async (pokemon) => {
+        const allPokemonArray = await getPokemon(pokemon.url);
+        return allPokemonArray;
+      })
+    );
+    console.log(allPokemon);
+    setGlobalPokemonStats(allPokemon);
+  };
 
-  // useEffect(() => {
-  //   fetchGlobalPokemon();
-  // }, []);
+  const filteredPokemon =
+    search.length > 0
+      ? globalPokemonStats?.filter((pokemon) => pokemon.name?.includes(search))
+      : pokemonData;
+
+  console.log(filteredPokemon);
+
+  useEffect(() => {
+    fetchGlobalPokemon();
+  }, []);
 
   return (
     <main className="main">
       <input
         className="form__search-input"
-        // onChange={handleInputChange}
+        onChange={(e) => {
+          handleSearch(e.target.value);
+        }}
       ></input>
       <section className="cards">
         {isLoading ? (
@@ -52,7 +65,7 @@ const Main = ({
           <>
             {" "}
             <ul className="card__list">
-              {pokemonData.map((pokemon, i) => {
+              {filteredPokemon.map((pokemon, i) => {
                 return <ItemCard key={i} pokemon={pokemon} />;
               })}
             </ul>
