@@ -11,6 +11,7 @@ import MobileModal from "../MobileModal/MobileModal.js";
 import { useEffect, useState } from "react";
 import { getAllPokemon, getPokemon } from "../../utils/PokeApi.js";
 import { Route, Switch } from "react-router-dom";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min.js";
 
 function App() {
   const [pokemonData, setPokemonData] = useState([]);
@@ -20,6 +21,7 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [offset, setoffset] = useState(0);
   const limit = 20;
+  const history = useHistory();
 
   const baseUrl = `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`;
 
@@ -41,10 +43,16 @@ function App() {
 
   const handleSignup = () => {
     handleCloseModal();
+    history.push("/profile");
   };
 
   const handleLogin = () => {
     handleCloseModal();
+    history.push("/profile");
+  };
+
+  const handleLogout = () => {
+    history.push("/");
   };
 
   const fetchData = async () => {
@@ -115,7 +123,7 @@ function App() {
           <About isLoading={isLoading} />
         </Route>
         <Route path="/profile">
-          <Profile pokemonData={pokemonData} />
+          <Profile pokemonData={pokemonData} onLogout={handleLogout} />
         </Route>
         <Route path="/pokemon/:id">
           <PokemonPage isLoading={isLoading} />
