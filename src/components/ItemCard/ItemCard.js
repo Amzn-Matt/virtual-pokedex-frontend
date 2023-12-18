@@ -1,8 +1,27 @@
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
+// import { useEffect, useState } from "react";
 import { TYPE_COLOR } from "../../utils/Constants";
+// import { getPokemon } from "../../utils/PokeApi";
 
 const ItemCard = ({ pokemon }) => {
   // console.log(pokemon);
+  // const [pokemonData, setPokemonData] = useState([]);
+
+  // const fetchPokemonData = async () => {
+  //   const res = await getPokemon(pokemon.url);
+
+  //   const promises = res.results.map((data) => {
+  //     return data;
+  //   });
+
+  //   const results = await Promise.all(promises);
+  //   console.log(results);
+  // };
+
+  // useEffect(() => {
+  //   fetchPokemonData();
+  // }, []);
+
   return (
     <Link to={`pokemon/${pokemon.name}`}>
       <li
