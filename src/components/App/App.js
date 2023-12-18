@@ -39,6 +39,14 @@ function App() {
     setActiveModal("");
   };
 
+  const handleSignup = () => {
+    handleCloseModal();
+  };
+
+  const handleLogin = () => {
+    handleCloseModal();
+  };
+
   const fetchData = async () => {
     setIsLoading(true);
     const response = await getAllPokemon(baseUrl);
@@ -49,6 +57,8 @@ function App() {
       .catch(console.error)
       .finally(() => setIsLoading(false));
   };
+
+  // console.log(initialPokemon);
 
   const loadingPokemon = async (data) => {
     const pokemon = await Promise.all(
@@ -118,6 +128,7 @@ function App() {
           buttonText={isLoading ? "Next..." : "Next"}
           altButtonText={"or Log in"}
           onAltButton={handleOpenLoginModal}
+          onNext={handleSignup}
         />
       )}
       {activeModal === "login" && (
@@ -126,6 +137,7 @@ function App() {
           buttonText={isLoading ? "Loging In...." : "Login"}
           altButtonText={"or Register"}
           onAltButton={handleOpenRegisterModal}
+          onLogin={handleLogin}
         />
       )}
       {activeModal === "mobile" && (
