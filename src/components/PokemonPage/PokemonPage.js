@@ -45,7 +45,7 @@ const PokemonPage = ({ isLoading }) => {
       .then((data) => {
         const details = data;
 
-        console.log(details);
+        // console.log(details);
         setPokemonDetails(details);
       })
       .catch(console.error);
@@ -56,7 +56,7 @@ const PokemonPage = ({ isLoading }) => {
       await getPokemonStats(`https://pokeapi.co/api/v2/pokemon/${params.id}`)
         .then((res) => {
           const pokemon = res;
-          console.log(pokemon);
+          // console.log(pokemon);
 
           setPokemonId(pokemon);
         })

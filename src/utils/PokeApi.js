@@ -38,12 +38,22 @@ export async function getPokemonStats(url) {
   });
 }
 
-export async function getGlobalPokemon(url) {
-  return new Promise((resolve, reject) => {
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        resolve(data);
-      });
-  });
-}
+// export async function getGlobalPokemon(url) {
+//   return new Promise((resolve, reject) => {
+//     fetch(url)
+//       .then((res) => res.json())
+//       .then((data) => {
+//         resolve(data);
+//       });
+//   });
+// }
+
+// export async function getGlobalPokemonStats(url) {
+//   return new Promise((resolve, reject) => {
+//     fetch(url)
+//       .then((res) => res.json())
+//       .then((data) => {
+//         resolve(data);
+//       });
+//   });
+// }
