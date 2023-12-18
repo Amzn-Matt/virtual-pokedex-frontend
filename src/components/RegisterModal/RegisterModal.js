@@ -4,7 +4,7 @@ import { useState } from "react";
 const RegisterModal = ({
   onCloseModal,
   buttonText,
-  onSignUp,
+  onNext,
   altButtonText,
   onAltButton,
 }) => {
@@ -26,7 +26,7 @@ const RegisterModal = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSignUp({ name, email, password });
+    onNext(console.log({ name, email, password }));
   };
 
   return (
