@@ -9,7 +9,7 @@ import RegisterModal from "../RegisterModal/RegisterModal.js";
 import LoginModal from "../LoginModal/LoginModal.js";
 import MobileModal from "../MobileModal/MobileModal.js";
 import { useEffect, useState } from "react";
-import { getAllPokemon, getPokemon } from "../../utils/PokeApi.js";
+import { fetchAllPokemon } from "../../utils/PokeApi.js";
 import { Route, Switch } from "react-router-dom";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min.js";
 
@@ -23,7 +23,7 @@ function App() {
   const limit = 20;
   const history = useHistory();
 
-  const baseUrl = `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`;
+  // const baseUrl = `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`;
 
   const handleOpenRegisterModal = () => {
     setActiveModal("register");
@@ -55,43 +55,43 @@ function App() {
     history.push("/");
   };
 
-  const fetchData = async () => {
-    setIsLoading(true);
-    const response = await getAllPokemon(baseUrl);
-    // console.log(response);
-    setPrevUrl(response.previous);
-    setNextUrl(response.next);
-    loadingPokemon(response.results)
-      .catch(console.error)
-      .finally(() => setIsLoading(false));
-  };
+  // const fetchData = async () => {
+  //   setIsLoading(true);
+  //   const response = await getAllPokemon(baseUrl);
+  //   // console.log(response);
+  //   setPrevUrl(response.previous);
+  //   setNextUrl(response.next);
+  //   loadingPokemon(response.results)
+  //     .catch(console.error)
+  //     .finally(() => setIsLoading(false));
+  // };
 
-  // console.log(initialPokemon);
+  // // console.log(initialPokemon);
 
-  const loadingPokemon = async (data) => {
-    const pokemon = await Promise.all(
-      data.map(async (pokemon) => {
-        const pokemonArray = await getPokemon(pokemon.url);
-        return pokemonArray;
-      })
-    );
-    setPokemonData(pokemon);
-  };
+  // const loadingPokemon = async (data) => {
+  //   const pokemon = await Promise.all(
+  //     data.map(async (pokemon) => {
+  //       const pokemonArray = await getPokemon(pokemon.url);
+  //       return pokemonArray;
+  //     })
+  //   );
+  //   setPokemonData(pokemon);
+  // };
 
-  const handleNextPage = async () => {
-    const data = await getAllPokemon(nextUrl);
-    await loadingPokemon(data.results);
-    setNextUrl(data.next);
-    setPrevUrl(data.previous);
-  };
+  // const handleNextPage = async () => {
+  //   const data = await getAllPokemon(nextUrl);
+  //   await loadingPokemon(data.results);
+  //   setNextUrl(data.next);
+  //   setPrevUrl(data.previous);
+  // };
 
-  const handlePreviousPage = async () => {
-    if (!prevUrl) return;
-    const data = await getAllPokemon(prevUrl);
-    await loadingPokemon(data.results);
-    setNextUrl(data.next);
-    setPrevUrl(data.previous);
-  };
+  // const handlePreviousPage = async () => {
+  //   if (!prevUrl) return;
+  //   const data = await getAllPokemon(prevUrl);
+  //   await loadingPokemon(data.results);
+  //   setNextUrl(data.next);
+  //   setPrevUrl(data.previous);
+  // };
 
   // const handleSelectedCard = async () => {
   //   const res = await getAllPokemon(baseUrl);
@@ -99,9 +99,13 @@ function App() {
   //   setSelectedCard(res.results);
   // };
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
+
+  // useEffect(() => {
+  //   fetchAllPokemon();
+  // }, []);
 
   return (
     <div className="app">
@@ -114,10 +118,10 @@ function App() {
         <Route exact path="/">
           <Main
             pokemonData={pokemonData}
-            onNextPage={handleNextPage}
-            onPreviousPage={handlePreviousPage}
-            prevUrl={prevUrl}
-            nextUrl={nextUrl}
+            // onNextPage={handleNextPage}
+            // onPreviousPage={handlePreviousPage}
+            // prevUrl={prevUrl}
+            // nextUrl={nextUrl}
             isLoading={isLoading}
           />
           <About isLoading={isLoading} />
