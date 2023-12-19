@@ -1,9 +1,10 @@
 import "./Main.css";
-// import { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import ItemCard from "../ItemCard/ItemCard";
 import Preloader from "../Preloader/Preloader";
 // import NotFound from "../NotFound/NotFound";
-// import { getGlobalPokemon, getGlobalPokemonStats } from "../../utils/PokeApi";
+// import { fetchAllPokemon } from "../../utils/PokeApi";
+import { useQuery } from "@tanstack/react-query";
 
 const Main = ({
   pokemonData,
@@ -13,15 +14,28 @@ const Main = ({
   nexUrl,
   isLoading,
 }) => {
+  const limit = 20;
+  const offset = 0;
+
+  // const baseUrl = `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`;
   // const [search, setSearch] = useState("");
   // const [globalPokemon, setGlobalPokemon] = useState([]);
   // const [globalPokemonStats, setGlobalPokemonStats] = useState([]);
-  // // const [isLarge, setIsLarge] = useState(true);
+  // const [isLarge, setIsLarge] = useState(true);
 
   // const handleSearch = (e) => {
   //   const text = e.toLowerCase();
   //   setSearch(text);
   // };
+
+  const { data } = useQuery({
+    queryKey: ["pokemon"],
+    queryFn: async () =>
+      await fetch(
+        `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`
+      ).then((res) => res.json()),
+  });
+  // console.log(data);
 
   // const baseUrl = "https://pokeapi.co/api/v2/pokemon";
 
@@ -71,7 +85,7 @@ const Main = ({
           <>
             {" "}
             <ul className="card__list">
-              {pokemonData.map((pokemon, i) => {
+              {data?.results?.map((pokemon, i) => {
                 return <ItemCard key={i} pokemon={pokemon} />;
               })}
             </ul>
