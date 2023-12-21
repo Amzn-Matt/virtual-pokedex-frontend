@@ -2,20 +2,13 @@ import "./Main.css";
 import { useState, useEffect } from "react";
 import ItemCard from "../ItemCard/ItemCard";
 import Preloader from "../Preloader/Preloader";
-// import NotFound from "../NotFound/NotFound";
-// import { fetchAllPokemon } from "../../utils/PokeApi";
-import { useQuery } from "@tanstack/react-query";
+import NotFound from "../NotFound/NotFound";
+import { getGlobalPokemon } from "../../utils/PokeApi";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
 
-const Main = ({
-  pokemonData,
-  onNextPage,
-  onPreviousPage,
-  prevUrl,
-  nexUrl,
-  isLoading,
-}) => {
+const Main = () => {
   const limit = 20;
-  const offset = 0;
+  const [offset, setOffset] = useState(0);
 
   // const baseUrl = `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`;
   // const [search, setSearch] = useState("");
@@ -28,14 +21,23 @@ const Main = ({
   //   setSearch(text);
   // };
 
-  const { data } = useQuery({
-    queryKey: ["pokemon"],
+  const { data, error, isError, isLoading, isPlaceholderData } = useQuery({
+    queryKey: ["pokemon", limit, offset],
     queryFn: async () =>
       await fetch(
         `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`
       ).then((res) => res.json()),
+    placeholderData: keepPreviousData,
   });
-  // console.log(data);
+  console.log(data);
+
+  const handleNextClick = () => {
+    setOffset((prev) => prev + 20);
+  };
+
+  const handlePreviousClick = () => {
+    setOffset((prev) => prev - 20);
+  };
 
   // const baseUrl = "https://pokeapi.co/api/v2/pokemon";
 
@@ -49,11 +51,12 @@ const Main = ({
   //   const results = await Promise.all(promises);
   //   setGlobalPokemon(results);
   // };
+  // // console.log(globalPokemon);
 
   // const filteredPokemon =
   //   search.length > 0
   //     ? globalPokemon?.filter((pokemon) => pokemon.name?.includes(search))
-  //     : pokemonData;
+  //     : data;
 
   // console.log(filteredPokemon);
 
@@ -72,42 +75,44 @@ const Main = ({
   return (
     <main className="main">
       {/* <input
-        className="form__search-input"
-        onChange={(e) => {
-          handleSearch(e.target.value);
-        }}
+      // className="form__search-input"
+      // onChange={(e) => {
+      //   handleSearch(e.target.value);
+      // }}
       ></input> */}
       <section className="cards">
         {/* {!isLoading && filteredPokemon.length === 0 && <NotFound />} */}
         {isLoading ? (
           <Preloader />
+        ) : isError ? (
+          <div>Error: {error.message}</div>
         ) : (
           <>
-            {" "}
             <ul className="card__list">
               {data?.results?.map((pokemon, i) => {
                 return <ItemCard key={i} pokemon={pokemon} />;
               })}
             </ul>
             <div className="card__button-wrapper">
-              {prevUrl && (
+              {data.previous && (
                 <button
                   className="card__list-btn"
                   type="button"
-                  onClick={onPreviousPage}
+                  onClick={handlePreviousClick}
                 >
                   Previous Page
                 </button>
               )}
-              {!nexUrl && (
-                <button
-                  className="card__list-btn"
-                  type="button"
-                  onClick={onNextPage}
-                >
-                  Next Page
-                </button>
-              )}
+              {isPlaceholderData ||
+                (data.next && (
+                  <button
+                    className="card__list-btn"
+                    type="button"
+                    onClick={handleNextClick}
+                  >
+                    Next Page
+                  </button>
+                ))}
             </div>
           </>
         )}

@@ -5,15 +5,15 @@ import { useQuery } from "@tanstack/react-query";
 import { getPokemon } from "../../utils/PokeApi";
 
 const ItemCard = ({ pokemon }) => {
-  console.log(pokemon);
+  // console.log(pokemon);
   const { data } = useQuery({
-    queryKey: ["pokemonData"],
+    queryKey: ["pokemonData", pokemon.name],
     queryFn: async () =>
       await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`).then(
         (res) => res.json()
       ),
   });
-  console.log(data);
+  // console.log(data);
 
   // console.log(pokemonDetails);
   // const [pokemonData, setPokemonData] = useState([]);
@@ -38,19 +38,19 @@ const ItemCard = ({ pokemon }) => {
       <li
         className="card"
         style={{
-          backgroundColor: `${TYPE_COLOR[pokemon.types[0].type.name]}`,
+          backgroundColor: `${TYPE_COLOR[data?.types[0].type.name]}`,
         }}
       >
         <div className="card__image-container">
           <img
-            src={pokemon?.sprites.other["official-artwork"].front_default}
+            src={data?.sprites.other["official-artwork"].front_default}
             alt={pokemon.name}
             className="card__image"
           />
         </div>
         <p className="card__name">{pokemon.name}</p>
         <div className="card__move-wrapper">
-          {pokemon.moves.slice(0, 3).map((move, i) => {
+          {data?.moves.slice(0, 3).map((move, i) => {
             return (
               <p className="card__move" key={i}>
                 {move.move.name}
