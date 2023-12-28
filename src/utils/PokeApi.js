@@ -50,6 +50,18 @@ export async function getGlobalPokemon(url) {
   });
 }
 
+const baseUrl = "https://pokeapi.co/api/v2/pokemon";
+
+export const fetchGlobalPokemon = async () => {
+  const res = await getGlobalPokemon(`${baseUrl}?limit=1000&offset=0`);
+
+  const promises = res.results.map((pokemon) => {
+    return pokemon;
+  });
+
+  return await Promise.all(promises);
+};
+
 // export async function getGlobalPokemonStats(url) {
 //   return new Promise((resolve, reject) => {
 //     fetch(url)
