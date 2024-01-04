@@ -20,28 +20,6 @@
   padding-left: 10px;
 }
 
-.form__search-btn {
-  color: #fff;
-  font-family: "Inter", sans-serif;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 700;
-  border-radius: 50px;
-  border: 1px solid #2f71e5;
-  background-color: #2f71e5;
-  width: 125px;
-  height: 45px;
-  position: absolute;
-  transition: opacity 0.2s linear;
-  right: 1px;
-  top: 2px;
-  cursor: pointer;
-}
-
-.form__search-btn:hover {
-  opacity: 0.8;
-}
-
 .cards {
   padding: 10px 10px 10px 10px;
   display: flex;
@@ -160,6 +138,10 @@
 
 .card__list-btn:hover {
   opacity: 0.6;
+}
+
+.card__list-btn:disabled {
+  visibility: hidden;
 }
 
 @media screen and (max-width: 640px) {
