@@ -3,182 +3,77 @@ import Header from "../Header/Header.js";
 import Main from "../Main/Main.js";
 import About from "../About/About";
 import Footer from "../Footer/Footer.js";
-import Profile from "../Profile/Profile.js";
 import PokemonPage from "../PokemonPage/PokemonPage.js";
-// import RegisterModal from "../RegisterModal/RegisterModal.js";
-// import LoginModal from "../LoginModal/LoginModal.js";
-// import MobileModal from "../MobileModal/MobileModal.js";
-// import { useState } from "react";
+import { useState } from "react";
 import { fetchGlobalPokemon } from "../../utils/PokeApi.js";
 import { Route, Switch } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
+import { keepPreviousData } from "@tanstack/react-query";
 
 function App() {
-  // const [pokemonData, setPokemonData] = useState([]);
-  // const [nextUrl, setNextUrl] = useState("");
-  // const [prevUrl, setPrevUrl] = useState("");
-  // const [isLoading, setIsLoading] = useState(false);
-  // const [activeModal, setActiveModal] = useState("");
-  // const [offset, setoffset] = useState(0);
-  // const limit = 20;
-  // const history = useHistory();
-  // const [globalPokemon, setGlobalPokemon] = useState([]);
-  // const baseUrl = "https://pokeapi.co/api/v2/pokemon";
+  const limit = 20;
+  const [offset, setOffset] = useState(0);
+  const [search, setSearch] = useState("");
 
   const { data: globalPokemon } = useQuery({
     queryKey: ["globalPokemon"],
     queryFn: fetchGlobalPokemon,
   });
 
-  // console.log(globalPokemon);
+  const {
+    data: initialPokemon,
+    error,
+    isError,
+    isLoading,
+    isPlaceholderData,
+  } = useQuery({
+    queryKey: ["pokemon", limit, offset],
+    queryFn: async () =>
+      await fetch(
+        `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`
+      ).then((res) => res.json()),
+    placeholderData: keepPreviousData,
+  });
 
-  // const fetchGlobalPokemon = async () => {
-  //   const res = await getGlobalPokemon(`${baseUrl}?limit=1000&offset=0`);
+  const handleSearch = (e) => {
+    const text = e.toLowerCase();
+    setSearch(text);
+  };
 
-  //   const promises = res.results.map((pokemon) => {
-  //     return pokemon;
-  //   });
+  const handleNextClick = () => {
+    setOffset((prev) => prev + 20);
+  };
 
-  //   const results = await Promise.all(promises);
-  //   setGlobalPokemon(results);
-  // };
-  // console.log(globalPokemon);
+  const handlePreviousClick = () => {
+    setOffset((prev) => prev - 20);
+  };
 
-  // const baseUrl = `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`;
-
-  // const handleOpenRegisterModal = () => {
-  //   setActiveModal("register");
-  // };
-
-  // const handleOpenLoginModal = () => {
-  //   setActiveModal("login");
-  // };
-
-  // const handleOpenMobileModal = () => {
-  //   setActiveModal("mobile");
-  // };
-
-  // const handleCloseModal = () => {
-  //   setActiveModal("");
-  // };
-
-  // const handleSignup = () => {
-  //   handleCloseModal();
-  //   history.push("/profile");
-  // };
-
-  // const handleLogin = () => {
-  //   handleCloseModal();
-  //   history.push("/profile");
-  // };
-
-  // const handleLogout = () => {
-  //   history.push("/");
-  // };
-
-  // const fetchData = async () => {
-  //   setIsLoading(true);
-  //   const response = await getAllPokemon(baseUrl);
-  //   // console.log(response);
-  //   setPrevUrl(response.previous);
-  //   setNextUrl(response.next);
-  //   loadingPokemon(response.results)
-  //     .catch(console.error)
-  //     .finally(() => setIsLoading(false));
-  // };
-
-  // // console.log(initialPokemon);
-
-  // const loadingPokemon = async (data) => {
-  //   const pokemon = await Promise.all(
-  //     data.map(async (pokemon) => {
-  //       const pokemonArray = await getPokemon(pokemon.url);
-  //       return pokemonArray;
-  //     })
-  //   );
-  //   setPokemonData(pokemon);
-  // };
-
-  // const handleNextPage = async () => {
-  //   const data = await getAllPokemon(nextUrl);
-  //   await loadingPokemon(data.results);
-  //   setNextUrl(data.next);
-  //   setPrevUrl(data.previous);
-  // };
-
-  // const handlePreviousPage = async () => {
-  //   if (!prevUrl) return;
-  //   const data = await getAllPokemon(prevUrl);
-  //   await loadingPokemon(data.results);
-  //   setNextUrl(data.next);
-  //   setPrevUrl(data.previous);
-  // };
-
-  // const handleSelectedCard = async () => {
-  //   const res = await getAllPokemon(baseUrl);
-  //   await loadingPokemon(res.results);
-  //   setSelectedCard(res.results);
-  // };
-
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
-
-  // useEffect(() => {
-  //   fetchAllPokemon();
-  // }, []);
+  const filteredPokemon =
+    search.length > 0
+      ? globalPokemon?.filter((pokemon) => pokemon.name?.includes(search))
+      : initialPokemon?.results;
 
   return (
     <div className="app">
-      <Header
-      // onSignUp={handleOpenRegisterModal}
-      // onLogin={handleOpenLoginModal}
-      // onMobileBtn={handleOpenMobileModal}
-      />
+      <Header handleSearch={handleSearch} />
       <Switch>
         <Route exact path="/">
           <Main
-            // onNextPage={handleNextPage}
-            // onPreviousPage={handlePreviousPage}
-            // prevUrl={prevUrl}
-            // nextUrl={nextUrl}
-            globalPokemon={globalPokemon}
+            filteredPokemon={filteredPokemon}
+            initialPokemon={initialPokemon}
+            handleNextClick={handleNextClick}
+            handlePreviousClick={handlePreviousClick}
+            isPlaceholderData={isPlaceholderData}
+            isError={isError}
+            error={error}
+            isLoading={isLoading}
           />
           <About />
-        </Route>
-        <Route path="/profile">
-          <Profile />
         </Route>
         <Route path="/pokemon/:id">
           <PokemonPage />
         </Route>
       </Switch>
-
-      {/* {activeModal === "register" && (
-        <RegisterModal
-          onCloseModal={handleCloseModal}
-          buttonText={isLoading ? "Next..." : "Next"}
-          altButtonText={"or Log in"}
-          onAltButton={handleOpenLoginModal}
-          onNext={handleSignup}
-        />
-      )}
-      {activeModal === "login" && (
-        <LoginModal
-          onCloseModal={handleCloseModal}
-          buttonText={isLoading ? "Loging In...." : "Login"}
-          altButtonText={"or Register"}
-          onAltButton={handleOpenRegisterModal}
-          onLogin={handleLogin}
-        />
-      )}
-      {activeModal === "mobile" && (
-        <MobileModal
-          onCloseModal={handleCloseModal}
-          onSignUp={handleOpenRegisterModal}
-          onLogin={handleOpenLoginModal}
-        />
-      )} */}
       <Footer />
     </div>
   );
