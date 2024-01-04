@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 10px 30px 10px 30px;
+  margin: 10px 30px 0px 30px;
   height: 120px;
   border-bottom: 1px solid rgba(84, 84, 84, 0.7);
 }
@@ -13,104 +13,26 @@
   color: #000;
 }
 
-.navigation {
-  display: flex;
-  gap: 25px;
-}
-
-.navigation__register-btn {
-  color: #000;
-  font-family: "Inter", sans-serif;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 700;
+.search-input {
+  width: 285px;
+  height: 45px;
   border-radius: 50px;
   border: 1px solid #2f71e5;
-  background-color: #fff;
-  max-width: 120px;
-  height: 36px;
-  padding: 8px 16px 8px 16px;
-  cursor: pointer;
-  transition: opacity 0.2s linear;
-}
-
-.navigation__register-btn:hover {
-  opacity: 0.6;
-}
-
-.navigation__register-btn:active {
-  background-color: #2f71e5;
-  color: #fff;
-  opacity: 1;
-}
-
-.navigation__login-btn {
+  outline: none;
   color: #000;
   font-family: "Inter", sans-serif;
-  font-size: 14px;
+  font-size: 20px;
   font-style: normal;
   font-weight: 700;
-  border-radius: 50px;
-  border: 1px solid #2f71e5;
-  background-color: #fff;
-  max-width: 120px;
-  height: 36px;
-  padding: 8px 18px 8px 18px;
-  cursor: pointer;
-  transition: opacity 0.2s linear;
-}
-
-.navigation__login-btn:hover {
-  opacity: 0.6;
-}
-
-.navigation__login-btn:active {
-  background-color: #2f71e5;
-  color: #fff;
-  opacity: 1;
-}
-
-.navigation__mobile-btn {
-  background-color: #fff;
-  border: 1px solid #2f71e5;
-  border-radius: 5px;
-  visibility: hidden;
+  padding-left: 10px;
 }
 
 @media screen and (max-width: 640px) {
   .header {
-    justify-content: space-around;
-    margin: 10px 15px 10px 15px;
+    flex-direction: column;
+    margin: 10px 15px 0px 15px;
+    justify-content: center;
     max-width: 100%;
-  }
-
-  .navigation {
-    max-width: 250px;
-    gap: 0;
-  }
-
-  .navigation__register-btn {
-    visibility: hidden;
-  }
-
-  .navigation__login-btn {
-    visibility: hidden;
-  }
-
-  .navigation__mobile-btn {
-    visibility: visible;
-    cursor: pointer;
-    cursor: pointer;
-    transition: opacity 0.2s linear;
-  }
-
-  .navigation__mobile-btn:hover {
-    opacity: 0.6;
-  }
-}
-
-@media screen and (max-width: 470px) {
-  .header__title {
-    font-size: 20px;
+    gap: 10px;
   }
 }
