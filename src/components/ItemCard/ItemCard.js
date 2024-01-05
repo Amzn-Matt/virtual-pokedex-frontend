@@ -1,37 +1,15 @@
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
-// import { useEffect, useState } from "react";
 import { TYPE_COLOR } from "../../utils/Constants";
 import { useQuery } from "@tanstack/react-query";
-import { getPokemon } from "../../utils/PokeApi";
+import { fetchPokemonData } from "../../utils/PokeApi";
 
 const ItemCard = ({ pokemon }) => {
   // console.log(pokemon);
   const { data } = useQuery({
     queryKey: ["pokemonData", pokemon.name],
-    queryFn: async () =>
-      await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`).then(
-        (res) => res.json()
-      ),
+    queryFn: async () => await fetchPokemonData(pokemon.name),
   });
   // console.log(data);
-
-  // console.log(pokemonDetails);
-  // const [pokemonData, setPokemonData] = useState([]);
-
-  // const fetchPokemonData = async () => {
-  //   const res = await getPokemon(pokemon.url);
-
-  //   const promises = res.results.map((data) => {
-  //     return data;
-  //   });
-
-  //   const results = await Promise.all(promises);
-  //   console.log(results);
-  // };
-
-  // useEffect(() => {
-  //   fetchPokemonData();
-  // }, []);
 
   return (
     <Link to={`pokemon/${pokemon.name}`}>
