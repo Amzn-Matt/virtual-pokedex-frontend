@@ -1,59 +1,7 @@
-// import { useEffect } from "react";
-
-export async function getAllPokemon(url) {
-  return new Promise((resolve, reject) => {
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        resolve(data);
-      });
-  });
-}
-
-export async function getPokemon(url) {
-  return new Promise((resolve, reject) => {
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        resolve(data);
-      });
-  });
-}
-
-export async function getPokemonSpecies(url) {
-  return new Promise((resolve, reject) => {
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        resolve(data);
-      });
-  });
-}
-
-export async function getPokemonStats(url) {
-  return new Promise((resolve, reject) => {
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        resolve(data);
-      });
-  });
-}
-
-export async function getGlobalPokemon(url) {
-  return new Promise((resolve, reject) => {
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        resolve(data);
-      });
-  });
-}
-
-const baseUrl = "https://pokeapi.co/api/v2/pokemon";
+import { baseUrl, speciesUrl, request } from "./Constants";
 
 export const fetchGlobalPokemon = async () => {
-  const res = await getGlobalPokemon(`${baseUrl}?limit=1000&offset=0`);
+  const res = await request(`${baseUrl}?limit=1008&offset=0`);
 
   const promises = res.results.map((pokemon) => {
     return pokemon;
@@ -62,47 +10,28 @@ export const fetchGlobalPokemon = async () => {
   return await Promise.all(promises);
 };
 
-// export async function getGlobalPokemonStats(url) {
-//   return new Promise((resolve, reject) => {
-//     fetch(url)
-//       .then((res) => res.json())
-//       .then((data) => {
-//         resolve(data);
-//       });
-//   });
-// }
+export const fetchInitialPokemon = async (limit, offset) => {
+  const intitialPokemon = await request(
+    `${baseUrl}?limit=${limit}&offset=${offset}`
+  );
 
-// export const checkResponse = (res) => {
-//   if (res.ok) {
-//     return res.json();
-//   }
-//   return Promise.reject(`Error: ${res.status}`);
-// };
+  return intitialPokemon;
+};
 
-// export const request = (url, options) => {
-//   return fetch(url, options).then(checkResponse);
-// };
+export const fetchPokemonData = async (name) => {
+  const pokemonData = await request(`${baseUrl}/${name}`);
 
-// const limit = 20;
-// const offset = 0;
+  return pokemonData;
+};
 
-// const baseUrl = `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`;
+export const fetchPokemonStats = async (id) => {
+  const pokemonStats = await request(`${baseUrl}/${id}`);
 
-// export const fetchAllPokemon = async () => {
-//   await fetch(baseUrl)
-//     .then((res) => {
-//       return res.json();
-//     })
-//     .then((data) => {
-//       console.log(data);
-//     })
-//     .catch(console.error);
-// };
+  return pokemonStats;
+};
 
-// export const fetchPokemonData = async (name) => {
-//   await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
-//     .then((res) => {
-//       return res.json();
-//     })
-//     .catch(console.error);
-// };
+export const fetchPokemonSpecies = async (id) => {
+  const speciesData = await request(`${speciesUrl}/${id}`);
+
+  return speciesData;
+};
