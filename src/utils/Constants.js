@@ -18,3 +18,17 @@ export const TYPE_COLOR = {
   steel: "#AAAAB8",
   water: "#3194F8",
 };
+
+export const baseUrl = "https://pokeapi.co/api/v2/pokemon";
+export const speciesUrl = "https://pokeapi.co/api/v2/pokemon-species";
+
+const checkResponse = (res) => {
+  if (res.ok) {
+    return res.json();
+  }
+  return Promise.reject(`Error: ${res.status}`);
+};
+
+export const request = (url, options) => {
+  return fetch(url, options).then(checkResponse);
+};
