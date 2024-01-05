@@ -5,7 +5,10 @@ import About from "../About/About";
 import Footer from "../Footer/Footer.js";
 import PokemonPage from "../PokemonPage/PokemonPage.js";
 import { useState } from "react";
-import { fetchGlobalPokemon } from "../../utils/PokeApi.js";
+import {
+  fetchGlobalPokemon,
+  fetchInitialPokemon,
+} from "../../utils/PokeApi.js";
 import { Route, Switch } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { keepPreviousData } from "@tanstack/react-query";
@@ -28,10 +31,7 @@ function App() {
     isPlaceholderData,
   } = useQuery({
     queryKey: ["pokemon", limit, offset],
-    queryFn: async () =>
-      await fetch(
-        `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`
-      ).then((res) => res.json()),
+    queryFn: async () => await fetchInitialPokemon(limit, offset),
     placeholderData: keepPreviousData,
   });
 
