@@ -1,6 +1,5 @@
 .header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   margin: 10px 30px 0px 30px;
   height: 120px;
@@ -34,5 +33,9 @@
     justify-content: center;
     max-width: 100%;
     gap: 10px;
+  }
+
+  .search-input {
+    margin-bottom: 10px;
   }
 }
