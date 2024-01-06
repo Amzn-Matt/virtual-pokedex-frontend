@@ -7,20 +7,6 @@
   flex-grow: 1;
 }
 
-.form__search-input {
-  width: 608px;
-  height: 45px;
-  border-radius: 50px;
-  border: 1px solid #2f71e5;
-  outline: none;
-  color: #000;
-  font-family: "Inter", sans-serif;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 700;
-  padding-left: 10px;
-}
-
 .cards {
   padding: 10px 10px 10px 10px;
   display: flex;
@@ -57,6 +43,7 @@
   padding: 10px 10px 10px 10px;
   transition: transform 0.2s ease-in-out;
 }
+
 .card:hover {
   transform: translate(0, -10px);
 }
