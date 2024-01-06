@@ -19,7 +19,7 @@ const PokemonPage = () => {
     isError,
     isLoading,
   } = useQuery({
-    queryKey: ["pokemonId", params.id],
+    queryKey: ["pokemon", params.id],
     queryFn: async () => await fetchPokemonStats(params.id),
   });
 
