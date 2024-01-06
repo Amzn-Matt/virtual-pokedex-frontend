@@ -18,6 +18,7 @@ The Virtual Pokédex is fun app in which users can browse through pokemon cards 
 - Fully rendered Pokèmon cards for all Pokèmon
 - Functioning Pagination to allow users to browse through all Pokèmon
 - Dynamic search filter
+- Fully Responsive Design
 
 **Why Use TanStack Query?**
 
